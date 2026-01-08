@@ -1,0 +1,679 @@
+<!-- * lone wolf, own sky | Matt Livingston -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courtney's Hair Salon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #1a1a1a;
+            --off-white: #faf9f7;
+            --cream: #f5f3ef;
+            --red-accent: #c41e3a;
+            --warm-gray: #8a8279;
+            --light-gray: #e8e5e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            background: var(--off-white);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Elegant scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--warm-gray);
+            border-radius: 4px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--black);
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--red-accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            background: var(--off-white);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 4rem 0 6rem;
+            margin-top: -10vh;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 0.8s ease 0.15s forwards;
+            opacity: 0;
+        }
+
+        .hero-tagline em {
+            font-style: italic;
+            color: var(--red-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--warm-gray);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .cta-phone {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--black);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+            animation: fadeInUp 0.8s ease 0.45s forwards;
+            opacity: 0;
+        }
+
+        .cta-phone:hover {
+            color: var(--red-accent);
+        }
+
+        .cta-subtext {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            animation: fadeInUp 0.8s ease 0.55s forwards;
+            opacity: 0;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1s ease 0.2s forwards;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            background: var(--cream);
+        }
+
+        .about-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--red-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .about h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+
+        .about p {
+            font-size: 1rem;
+            color: var(--warm-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 2rem;
+            background: var(--off-white);
+        }
+
+        .services-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .services h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 400;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border: 1px solid var(--light-gray);
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--red-accent);
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 8rem 2rem;
+            background: var(--black);
+        }
+
+        .gallery-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .gallery .section-label {
+            color: var(--red-accent);
+        }
+
+        .gallery h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 400;
+            color: var(--off-white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            background: var(--off-white);
+        }
+
+        .contact-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-intro {
+            font-size: 1rem;
+            color: var(--warm-gray);
+            margin-bottom: 3rem;
+        }
+
+        .contact-phone-large {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 500;
+            color: var(--black);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .contact-phone-large:hover {
+            color: var(--red-accent);
+        }
+
+        .contact-phone-large::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--red-accent);
+        }
+
+        .contact-details {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+        }
+
+        .contact-item-value a {
+            color: var(--black);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item-value a:hover {
+            color: var(--red-accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+        }
+
+        footer p {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                grid-template-rows: 60vh auto;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                min-height: 60vh;
+                height: 100%;
+            }
+
+            .hero-text {
+                padding: 3rem 2rem 4rem;
+                margin-top: 0;
+                text-align: center;
+            }
+
+            .hero-tagline {
+                font-size: 2.5rem;
+            }
+
+            .cta-phone {
+                font-size: 2.25rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--off-white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.4s ease;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+
+            .hero-tagline {
+                font-size: 2rem;
+            }
+
+            .cta-phone {
+                font-size: 1.75rem;
+            }
+
+            .about h2,
+            .services h2,
+            .gallery h2,
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .contact-phone-large {
+                font-size: 2.5rem;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="courtney-logo.png" alt="Courtney's Hair Salon" class="header-logo">
+        <nav id="nav">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Book Now</a>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1 class="hero-tagline">Where confidence<br>meets <em>style</em></h1>
+            <p class="hero-subtitle">Personalized hair care in the Dallas area</p>
+            <a href="tel:+19725551234" class="cta-phone">(972) 555-1234</a>
+            <p class="cta-subtext">Call or text to book</p>
+        </div>
+        <div class="hero-image">
+            <img src="courtney-stock-1.png" alt="Beautiful hair styling">
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-inner">
+            <p class="section-label">Welcome</p>
+            <h2>Your hair tells your story. Let's make it a beautiful one.</h2>
+            <p>With years of experience and a passion for bringing out your natural beauty, Courtney creates personalized looks that fit your lifestyle and make you feel like the best version of yourself.</p>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-inner">
+            <div class="services-header">
+                <p class="section-label">What I Offer</p>
+                <h2>Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Cut & Style</h3>
+                    <p>Precision cuts tailored to your face shape, hair texture, and personal style.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Color</h3>
+                    <p>From subtle highlights to bold transformations, find your perfect shade.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Special Occasion</h3>
+                    <p>Wedding, prom, or date night—look stunning for your big moment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="gallery-inner">
+            <div class="gallery-header">
+                <p class="section-label">The Work</p>
+                <h2>Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="courtney-stock-1.png" alt="Hair styling example">
+                </div>
+                <div class="gallery-item">
+                    <img src="courney-stock-2.png" alt="Hair styling example">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-inner">
+            <p class="section-label">Let's Talk</p>
+            <h2>Ready for a fresh look?</h2>
+            <p class="contact-intro">I'd love to hear about what you're looking for. Give me a call or send a text to book your appointment.</p>
+            <a href="tel:+19725551234" class="contact-phone-large">(972) 555-1234</a>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <p class="contact-item-label">Email</p>
+                    <p class="contact-item-value"><a href="mailto:courtney@example.com">courtney@example.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <p class="contact-item-label">Location</p>
+                    <p class="contact-item-value">Dallas, TX Area</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="courtney-logo.png" alt="Courtney's Hair Salon" class="footer-logo">
+        <p>&copy; 2025 Courtney's Hair Salon. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav').classList.toggle('active');
+        }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav').classList.remove('active');
+            });
+        });
+
+        // Header shadow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>

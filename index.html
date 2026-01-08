@@ -1,184 +1,1227 @@
+<!-- * lone wolf, own tools | Matt Livingston -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matt Livingston | Web Developer, Copywriter & Creative Strategist</title>
-  <meta name="author" content="Matt Livingston">
-
-<!-- Standard Favicon -->
-<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-
-<!-- PNG Icons -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matt Livingston | Website Design | Web Development</title>
+  
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-
-<!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
-<!-- Optional SVG Icon -->
-<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
-
-<!-- Web Manifest -->
 <link rel="manifest" href="/site.webmanifest">
 
-<!-- Safari Pinned Tab (optional) -->
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<!-- Open Graph / Social Card -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Matt Livingston — Website Design & Portfolio" />
+<meta property="og:description" content="Modern, fast websites that look sharp and convert. View my work and book a build." />
+<meta property="og:url" content="https://www.deftwebmaster.com/" />
+<meta property="og:image" content="https://www.deftwebmaster.com/share-card.png" />
+<meta property="og:image:secure_url" content="https://www.deftwebmaster.com/share-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Deft Webmaster — Website Design" />
 
-<!-- Theme Colors -->
-<meta name="theme-color" content="#0d0d0d">
-<meta name="msapplication-TileColor" content="#0d0d0d">
-<meta name="apple-mobile-web-app-title" content="Matt L" />
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Deft Webmaster — Website Design & Portfolio" />
+<meta name="twitter:description" content="Modern, fast websites that look sharp and convert. View my work and book a build." />
+<meta name="twitter:image" content="https://www.deftwebmaster.com/share-card.png" />
+<meta name="twitter:image:alt" content="Deft Webmaster — Website Design" />
 
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Matt Livingston – Developer, Copywriter, Strategist">
-<meta property="og:description" content="Explore the portfolio of Matt Livingston — a web developer, strategic copywriter, and creative strategist building sleek, AI-powered tools and micro-SaaS apps.">
-<meta property="og:image" content="https://www.deftwebmaster.com/social-card.png">
-<meta property="og:url" content="https://www.deftwebmaster.com/">
-<meta property="og:type" content="website">
+<!-- Optional (nice-to-have) -->
+<link rel="canonical" href="https://www.deftwebmaster.com/" />
 
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Matt Livingston – Developer, Copywriter, Strategist">
-<meta name="twitter:description" content="Explore the portfolio of Matt Livingston — a web developer, strategic copywriter, and creative strategist building sleek, AI-powered tools and micro-SaaS apps.">
-<meta name="twitter:image" content="https://www.deftwebmaster.com/social-card.png">
-
-
-  <meta name="description" content="Matt Livingston – developer, strategic copywriter, and creative strategist. Explore a sleek portfolio of AI-powered tools, micro-SaaS projects, and sharp digital craftsmanship.">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #0d0d0d;
-      color: #f0f0f0;
-      font-family: 'Inter', sans-serif;
+    :root {
+      --bg-primary: #0a0a0b;
+      --bg-secondary: #111113;
+      --bg-tertiary: #18181b;
+      --cyan: #22d3ee;
+      --cyan-glow: rgba(34, 211, 238, 0.15);
+      --cyan-dim: rgba(34, 211, 238, 0.6);
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #52525b;
+      --border: #27272a;
+      --gradient-mesh: radial-gradient(ellipse 80% 50% at 50% -20%, var(--cyan-glow), transparent);
     }
-    a:hover {
-      color: #38bdf8;
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* Gradient mesh background */
+    .gradient-mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-mesh);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Grid lines background effect */
+    .grid-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Animated gradient orb */
+    .orb {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--cyan-glow), transparent 70%);
+      filter: blur(80px);
+      animation: orbFloat 20s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .orb-1 {
+      top: -200px;
+      right: -200px;
+    }
+
+    .orb-2 {
+      bottom: -300px;
+      left: -200px;
+      animation-delay: -10s;
+      opacity: 0.5;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(-50px, 50px) scale(1.1); }
+      50% { transform: translate(30px, -30px) scale(0.9); }
+      75% { transform: translate(-20px, -40px) scale(1.05); }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--cyan);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--cyan);
+      color: var(--bg-primary);
+      box-shadow: 0 0 30px var(--cyan-glow);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 0 3rem;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--cyan);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    .hero-title .highlight {
+      color: var(--cyan);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 0.1em;
+      left: 0;
+      width: 100%;
+      height: 0.08em;
+      background: var(--cyan);
+      opacity: 0.3;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 600px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1.5rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .btn-primary {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 1rem 2rem;
+      background: var(--cyan);
+      border: none;
+      color: var(--bg-primary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 40px var(--cyan-glow), 0 0 80px var(--cyan-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 1rem 2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-secondary);
+      background: var(--bg-tertiary);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--cyan), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.5; transform: scaleY(0.8); }
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Section styling */
+    section {
+      padding: 8rem 3rem;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+    }
+
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--cyan);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: 0.02em;
+    }
+
+    /* Services Section */
+    .services {
+      background: var(--bg-secondary);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover {
+      border-color: var(--cyan-dim);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--bg-tertiary);
+      line-height: 1;
+      margin-bottom: 1rem;
+      transition: color 0.4s ease;
+    }
+
+    .service-card:hover .service-number {
+      color: var(--cyan-glow);
+    }
+
+    .service-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .service-description {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .service-icon {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      transition: all 0.4s ease;
+    }
+
+    .service-card:hover .service-icon {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Work Section - Client Logos */
+    .work {
+      background: var(--bg-primary);
+    }
+
+    .work-intro {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 4rem;
+      line-height: 1.8;
+    }
+
+    .logo-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .logo-card {
+      background: #e8e8e8;
+      border: 1px solid var(--border);
+      aspect-ratio: 16/10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .logo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(34, 211, 238, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .logo-card:hover::after {
+      opacity: 1;
+    }
+
+    .logo-card:hover {
+      border-color: var(--cyan-dim);
+      transform: scale(1.02);
+      background: #f5f5f5;
+    }
+
+    .logo-card img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      filter: grayscale(100%);
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-card:hover img {
+      filter: grayscale(0%);
+    }
+
+    .logo-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: #52525b;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+      z-index: 1;
+    }
+
+    .logo-card:hover .logo-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stats Section */
+    .stats {
+      background: var(--bg-tertiary);
+      padding: 6rem 3rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--cyan);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    /* Process Section */
+    .process {
+      background: var(--bg-secondary);
+    }
+
+    .process-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+
+    .process-step {
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    .process-step::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+
+    .process-step:hover::before {
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px var(--cyan-glow);
+    }
+
+    .process-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      padding-top: 4rem;
+    }
+
+    .process-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .process-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--bg-primary);
+      text-align: center;
+    }
+
+    .contact-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .contact-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: var(--cyan);
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border: 1px solid var(--cyan);
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .contact-email:hover {
+      background: var(--cyan);
+      color: var(--bg-primary);
+      box-shadow: 0 0 40px var(--cyan-glow);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(240, 240, 240, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-label {
+      margin-top: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #52525b;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      background: transparent;
+      border: 1px solid #d4d4d8;
+      color: #3f3f46;
+      font-size: 1.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 2001;
+    }
+
+    .modal-close:hover {
+      border-color: #18181b;
+      color: #18181b;
+      background: #e4e4e7;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .process-timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .process-timeline::before {
+        display: none;
+      }
+
+      .process-step::before {
+        left: 0;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 0 1.5rem;
+      }
+
+      section {
+        padding: 5rem 1.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+
+      .stat-item {
+        text-align: left;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .process-timeline {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
     }
   </style>
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({ once: true });
-</script>
 </head>
-<body class="overflow-x-hidden">
+<body>
+  <div class="gradient-mesh"></div>
+  <div class="grid-lines"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
 
-  <!-- Header -->
-  <header class="text-center py-12" data-aos="fade-down">
-<img 
-  src="deftwebmaster-logo.png" 
-  alt="Matt Livingston | Web Developer, Copywriter & Creative Strategist" 
-  class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto rounded-md shadow-lg mb-4"
-  data-aos="zoom-in"
-  data-aos-duration="700"
-/>
-    <h1 class="text-4xl font-bold tracking-wide">Matt Livingston</h1>
-    <p class="text-gray-400 text-sm mt-2">Web Developer • Entrepreneur • Creator</p>
-  </header>
+  <nav>
+    <a href="#" class="logo">
+      <span class="logo-mark">ML</span>
+      Matt Livingston
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Start Project</a>
+  </nav>
 
-  <!-- Intro -->
-  <section class="text-center px-6 md:px-20 max-w-3xl mx-auto py-12" data-aos="fade-up">
-    <h2 class="text-2xl font-semibold mb-4">Crafting digital tools with purpose & precision.</h2>
-    <p class="text-gray-400">From clean one-page sites to AI-powered micro-startups, I build tools with purpose and precision. Below are a few standout projects built to solve real problems — <em>fast</em>.</p>
-  </section>
-
-  <!-- Projects -->
-  <section class="px-6 md:px-20 max-w-6xl mx-auto py-12">
-    <h2 class="text-xl font-semibold mb-6 text-center" data-aos="zoom-in">Projects</h2>
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <!-- Project Card Template -->
-      <div class="bg-gray-900 rounded-xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2" data-aos="fade-up">
-        <img src="goalhacker.png" alt="GoalHacker" class="rounded-md mb-4 w-full h-36 object-cover">
-        <h3 class="text-lg font-semibold mb-2">GoalHacker</h3>
-        <p class="text-gray-400 text-sm mb-3">Generates strategic 100-day plans with smart subtasks and AI feedback loops.</p>
-        <a href="https://opaltrail.com/goalhacker" class="text-blue-400 hover:underline text-sm">View Project →</a>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Web Developer & Designer</div>
+      <h1 class="hero-title">
+        I Build<br>
+        <span class="highlight">Digital</span><br>
+        Experiences
+      </h1>
+      <p class="hero-description">
+        Clean code. Memorable design. Websites that work as hard as you do. 
+        From storefronts to portfolios, I craft web solutions that convert 
+        visitors into customers.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn-primary">Let's Talk</a>
+        <a href="#work" class="btn-secondary">View Work</a>
       </div>
-
-      <!-- Duplicate for other projects -->
-      <div class="bg-gray-900 rounded-xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-        <img src="keyword-necromancer.png" alt="Keyword Necromancer" class="rounded-md mb-4 w-full h-36 object-cover">
-        <h3 class="text-lg font-semibold mb-2">Keyword Necromancer</h3>
-        <p class="text-gray-400 text-sm mb-3">Revives stale SEO content with AI-powered keyword upgrades and rewrite insights.</p>
-        <a href="https://opaltrail.com/keyword-necromancer" class="text-blue-400 hover:underline text-sm">View Project →</a>
-      </div>
-
-      <div class="bg-gray-900 rounded-xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-        <img src="stratify.png" alt="Stratify" class="rounded-md mb-4 w-full h-36 object-cover">
-        <h3 class="text-lg font-semibold mb-2">Stratify</h3>
-        <p class="text-gray-400 text-sm mb-3">Smart daily and weekly planners that break down big goals into clean action.</p>
-        <a href="https://stratify.opaltrail.com" class="text-blue-400 hover:underline text-sm">View Project →</a>
-      </div>
-
-            <!-- Row 2: Additional Projects -->
-      <div class="bg-gray-900 rounded-xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2" data-aos="fade-up">
-        <img src="thinktankz.png" alt="ThinkTankz" class="rounded-md mb-4 w-full h-36 object-cover">
-        <h3 class="text-lg font-semibold mb-2">ThinkTankz</h3>
-        <p class="text-gray-400 text-sm mb-3">Ask a fictional board of legendary advisors anything — powered by AI insight.</p>
-        <a href="https://thinktankz.com" class="text-blue-400 hover:underline text-sm">View Project →</a>
-      </div>
-
-<div class="bg-gray-900 rounded-xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-  <img src="copykiller.png" alt="CopyKiller" class="rounded-md mb-4 w-full h-36 object-cover">
-  <h3 class="text-lg font-semibold mb-2">CopyKiller</h3>
-  <p class="text-gray-400 text-sm mb-3">The AI tool that rewrites your copy to convert — sharpen your message and boost response.</p>
-  <a href="https://opaltrail.com/copykiller/" class="text-blue-400 hover:underline text-sm">View Project →</a>
-</div>
-
-
-      <div class="bg-gray-900 rounded-xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-        <img src="postrecon.png" alt="PostRecon" class="rounded-md mb-4 w-full h-36 object-cover">
-        <h3 class="text-lg font-semibold mb-2">PostRecon</h3>
-        <p class="text-gray-400 text-sm mb-3">Turn competitive insight into original, high-impact blog content — faster.</p>
-        <a href="#" class="text-blue-400 hover:underline text-sm">View Project →</a>
-      </div>
-
-
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll to explore
     </div>
   </section>
 
-  <!-- About Me -->
-  <section class="bg-gray-900 mt-20 py-16 px-6 md:px-20" data-aos="fade-in">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-xl font-semibold mb-4">About Me</h2>
-<p class="text-gray-400 leading-relaxed">
-  I’m a <strong>developer</strong>, <strong>strategic copywriter</strong>, and <strong>creative strategist</strong> focused on building tools that solve real problems — and <em>sound damn good doing it</em>.
-  I live at the intersection of <strong>clean code</strong> and <strong>clear messaging</strong>, whether I’m designing a sleek UI or crafting the words that drive action.
-  When I’m not shipping micro-startups or automating workflows, you’ll find me writing books or grilling burgers worthy of <em>Bob Belcher</em>.
-</p>
+  <section class="services" id="services">
+    <div class="section-header">
+      <div class="section-tag">What I Do</div>
+      <h2 class="section-title">Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">01</div>
+        <h3 class="service-title">Website Development</h3>
+        <p class="service-description">
+          Custom-built, responsive websites that load fast and look sharp on every device. 
+          Hand-coded for performance and maintainability.
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">02</div>
+        <h3 class="service-title">E-Commerce & Storefronts</h3>
+        <p class="service-description">
+          Online stores that sell. Clean product displays, smooth checkout flows, 
+          and inventory systems that just work.
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">03</div>
+        <h3 class="service-title">Restaurant Websites</h3>
+        <p class="service-description">
+          Menus that make mouths water. Online ordering, reservations, and locations 
+          that get customers through your door.
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">04</div>
+        <h3 class="service-title">Small Business Web Design</h3>
+        <p class="service-description">
+          Professional web presence for local businesses. Service pages, contact forms, 
+          and designs that build trust at first glance.
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">05</div>
+        <h3 class="service-title">Blog & Content Sites</h3>
+        <p class="service-description">
+          Content-first platforms that are easy to update. SEO-ready architecture 
+          with beautiful typography that keeps readers engaged.
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">06</div>
+        <h3 class="service-title">Logo Design</h3>
+        <p class="service-description">
+          Brand marks that stick. From concept to final files, logos that work 
+          across business cards, websites, and everything in between.
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">07</div>
+        <h3 class="service-title">Static Web Apps</h3>
+        <p class="service-description">
+          Interactive tools and calculators. Single-page applications that run 
+          lightning-fast without server dependencies.
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">08</div>
+        <h3 class="service-title">Landing Pages & Funnels</h3>
+        <p class="service-description">
+          Conversion-focused pages for launches and campaigns. A/B ready designs 
+          that turn traffic into leads and leads into customers.
+        </p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <div class="service-number">09</div>
+        <h3 class="service-title">Website Maintenance</h3>
+        <p class="service-description">
+          Ongoing support to keep things running. Updates, backups, security patches, 
+          and content changes without the hassle.
+        </p>
+      </div>
     </div>
   </section>
 
-<!-- Contact Me -->
-<section class="py-16 px-6 md:px-20" data-aos="fade-up">
-  <div class="max-w-xl mx-auto text-center">
-    <h2 class="text-xl font-semibold mb-4">Let’s Connect</h2>
-    <p class="text-gray-400 mb-3">Want to collaborate, hire me, or just say hi?</p>
-<p class="text-lg font-medium text-cyan-400 drop-shadow-[0_0_6px_#22d3ee]">
-  <em>matt(at)deftwebmaster.com</em>
-</p>
+  <section class="work" id="work">
+    <div class="section-header">
+      <div class="section-tag">Selected Clients</div>
+      <h2 class="section-title">Recent Work</h2>
+    </div>
+    <p class="work-intro">
+      A sampling of brands I've designed for. Each project started with a conversation 
+      and ended with something that works.
+    </p>
+    <div class="logo-showcase">
+      <div class="logo-card">
+        <img src="canopy-logo.png" alt="Canopy Legal">
+        <span class="logo-label">Legal Services</span>
+      </div>
+      <div class="logo-card">
+        <img src="courtney-logo.png" alt="Courtney's Hair Salon">
+        <span class="logo-label">Beauty & Salon</span>
+      </div>
+      <div class="logo-card">
+        <img src="ironbark-logo.png" alt="Ironbark Outdoor Equipment">
+        <span class="logo-label">Outdoor Retail</span>
+      </div>
+      <div class="logo-card">
+        <img src="nimbus-logo.png" alt="Nimbus Kitchen">
+        <span class="logo-label">Restaurant</span>
+      </div>
+      <div class="logo-card">
+        <img src="parallax-logo.png" alt="Parallax Audio">
+        <span class="logo-label">Audio Production</span>
+      </div>
+      <div class="logo-card">
+        <img src="ridgeline-logo.png" alt="Ridgeline Roasters">
+        <span class="logo-label">Coffee & Beverage</span>
+      </div>
+      <div class="logo-card">
+        <img src="vectral-logo.png" alt="Vectral">
+        <span class="logo-label">Business Services</span>
+      </div>
+      <div class="logo-card">
+        <img src="splitstream-logo.png" alt="Splitstream">
+        <span class="logo-label">Fintech</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">18+</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">&lt;2s</div>
+        <div class="stat-label">Avg Load Time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">DFW</div>
+        <div class="stat-label">Based In Texas</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="process">
+    <div class="section-header">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-title">Process</h2>
+    </div>
+    <div class="process-timeline">
+      <div class="process-step">
+        <div class="process-number">01</div>
+        <h3 class="process-title">Discovery</h3>
+        <p class="process-desc">We talk about your business, goals, and what success looks like. No jargon, just questions.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">02</div>
+        <h3 class="process-title">Design</h3>
+        <p class="process-desc">Wireframes and mockups that show the structure before a single line of code is written.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">03</div>
+        <h3 class="process-title">Develop</h3>
+        <p class="process-desc">Clean, commented code built to last. Regular check-ins keep everything on track.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">04</div>
+        <h3 class="process-title">Deploy</h3>
+        <p class="process-desc">Launch day. Testing, optimization, and handoff with documentation you can actually use.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="section-tag" style="justify-content: center;">Get In Touch</div>
+    <h2 class="contact-title">Let's Build Something</h2>
+    <p class="contact-subtitle">
+      Have a project in mind? I'd love to hear about it. 
+      Drop me a line and let's see if we're a good fit.
+    </p>
+    <a href="mailto:matt@mattlivingston.com" class="contact-email">matt@mattlivingston.com</a>
+  </section>
+
+  <footer>
+    <div class="footer-copy">© 2025 Matt Livingston. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="https://mattlivingston.com">Portfolio</a>
+      <a href="https://matt.st">Essays</a>
+      <a href="https://github.com/mattlivingston">GitHub</a>
+    </div>
+  </footer>
+
+  <!-- Logo Modal -->
+  <div class="modal-overlay" id="logoModal">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-content">
+      <img src="" alt="" id="modalImage">
+      <div class="modal-label" id="modalLabel"></div>
+    </div>
   </div>
-</section>
 
-<!-- Footer -->
-<footer class="text-center text-gray-600 text-sm py-10 space-y-2" data-aos="fade-up">
-  <p>© 2013–2025 <a href="/" title="Matt Livingston | Web Developer, Copywriter & Creative Strategist">Matt Livingston</a> • Built with love, code & caffeine ☕</p>
-  <p>
-    <a href="/privacy-policy/" class="text-cyan-400 hover:underline transition duration-200 ease-in-out" title="Privacy Policy">Privacy Policy</a>
-  </p>
-</footer>
-
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
+    const modal = document.getElementById('logoModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalLabel = document.getElementById('modalLabel');
+    const closeBtn = document.querySelector('.modal-close');
+
+    document.querySelectorAll('.logo-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        const label = card.querySelector('.logo-label');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        modalLabel.textContent = label ? label.textContent : '';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
   </script>
-
 </body>
 </html>

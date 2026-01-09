@@ -1,1225 +1,839 @@
-<!-- * lone wolf, own tools | Matt Livingston -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matt Livingston | Website Design | Web Development</title>
-  
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-<!-- Open Graph / Social Card -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Matt Livingston — Website Design & Portfolio" />
-<meta property="og:description" content="Modern, fast websites that look sharp and convert. View my work and book a build." />
-<meta property="og:url" content="https://www.deftwebmaster.com/" />
-<meta property="og:image" content="https://www.deftwebmaster.com/share-card.png" />
-<meta property="og:image:secure_url" content="https://www.deftwebmaster.com/share-card.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Deft Webmaster — Website Design" />
-
-<!-- Twitter / X -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Deft Webmaster — Website Design & Portfolio" />
-<meta name="twitter:description" content="Modern, fast websites that look sharp and convert. View my work and book a build." />
-<meta name="twitter:image" content="https://www.deftwebmaster.com/share-card.png" />
-<meta name="twitter:image:alt" content="Deft Webmaster — Website Design" />
-
-<!-- Optional (nice-to-have) -->
-<link rel="canonical" href="https://www.deftwebmaster.com/" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0a0a0b;
-      --bg-secondary: #111113;
-      --bg-tertiary: #18181b;
-      --cyan: #22d3ee;
-      --cyan-glow: rgba(34, 211, 238, 0.15);
-      --cyan-dim: rgba(34, 211, 238, 0.6);
-      --text-primary: #fafafa;
-      --text-secondary: #a1a1aa;
-      --text-muted: #52525b;
-      --border: #27272a;
-      --gradient-mesh: radial-gradient(ellipse 80% 50% at 50% -20%, var(--cyan-glow), transparent);
-    }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Noise texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      opacity: 0.03;
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    /* Gradient mesh background */
-    .gradient-mesh {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-mesh);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* Grid lines background effect */
-    .grid-lines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 80px 80px;
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* Animated gradient orb */
-    .orb {
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--cyan-glow), transparent 70%);
-      filter: blur(80px);
-      animation: orbFloat 20s ease-in-out infinite;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .orb-1 {
-      top: -200px;
-      right: -200px;
-    }
-
-    .orb-2 {
-      bottom: -300px;
-      left: -200px;
-      animation-delay: -10s;
-      opacity: 0.5;
-    }
-
-    @keyframes orbFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(-50px, 50px) scale(1.1); }
-      50% { transform: translate(30px, -30px) scale(0.9); }
-      75% { transform: translate(-20px, -40px) scale(1.05); }
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 1.5rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
-    }
-
-    .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.1em;
-      color: var(--text-primary);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      border: 2px solid var(--cyan);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      color: var(--cyan);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--cyan);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--cyan);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 0.75rem 1.5rem;
-      background: transparent;
-      border: 1px solid var(--cyan);
-      color: var(--cyan);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: all 0.3s ease;
-    }
-
-    .nav-cta:hover {
-      background: var(--cyan);
-      color: var(--bg-primary);
-      box-shadow: 0 0 30px var(--cyan-glow);
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 3rem 0 3rem;
-      position: relative;
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .hero-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      opacity: 0;
-      animation: fadeSlideUp 0.8s ease forwards;
-      animation-delay: 0.2s;
-    }
-
-    .hero-tag::before {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--cyan);
-    }
-
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 12vw, 10rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeSlideUp 0.8s ease forwards;
-      animation-delay: 0.4s;
-    }
-
-    .hero-title .highlight {
-      color: var(--cyan);
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero-title .highlight::after {
-      content: '';
-      position: absolute;
-      bottom: 0.1em;
-      left: 0;
-      width: 100%;
-      height: 0.08em;
-      background: var(--cyan);
-      opacity: 0.3;
-    }
-
-    .hero-description {
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: var(--text-secondary);
-      max-width: 600px;
-      line-height: 1.8;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeSlideUp 0.8s ease forwards;
-      animation-delay: 0.6s;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      gap: 1.5rem;
-      opacity: 0;
-      animation: fadeSlideUp 0.8s ease forwards;
-      animation-delay: 0.8s;
-    }
-
-    .btn-primary {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 1rem 2rem;
-      background: var(--cyan);
-      border: none;
-      color: var(--bg-primary);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .btn-primary:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 0 40px var(--cyan-glow), 0 0 80px var(--cyan-glow);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 1rem 2rem;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--text-secondary);
-      background: var(--bg-tertiary);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 3rem;
-      left: 3rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--cyan), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 1; transform: scaleY(1); }
-      50% { opacity: 0.5; transform: scaleY(0.8); }
-    }
-
-    @keyframes fadeSlideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Section styling */
-    section {
-      padding: 8rem 3rem;
-      position: relative;
-    }
-
-    .section-header {
-      margin-bottom: 4rem;
-    }
-
-    .section-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .section-tag::before {
-      content: '';
-      width: 24px;
-      height: 1px;
-      background: var(--cyan);
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      letter-spacing: 0.02em;
-    }
-
-    /* Services Section */
-    .services {
-      background: var(--bg-secondary);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .service-card {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--cyan), transparent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
-    .service-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .service-card:hover {
-      border-color: var(--cyan-dim);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .service-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 4rem;
-      color: var(--bg-tertiary);
-      line-height: 1;
-      margin-bottom: 1rem;
-      transition: color 0.4s ease;
-    }
-
-    .service-card:hover .service-number {
-      color: var(--cyan-glow);
-    }
-
-    .service-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .service-description {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .service-icon {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 1.25rem;
-      transition: all 0.4s ease;
-    }
-
-    .service-card:hover .service-icon {
-      border-color: var(--cyan);
-      color: var(--cyan);
-    }
-
-    /* Work Section - Client Logos */
-    .work {
-      background: var(--bg-primary);
-    }
-
-    .work-intro {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin-bottom: 4rem;
-      line-height: 1.8;
-    }
-
-    .logo-showcase {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .logo-card {
-      background: #e8e8e8;
-      border: 1px solid var(--border);
-      aspect-ratio: 16/10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .logo-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 0%, rgba(34, 211, 238, 0.1) 100%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .logo-card:hover::after {
-      opacity: 1;
-    }
-
-    .logo-card:hover {
-      border-color: var(--cyan-dim);
-      transform: scale(1.02);
-      background: #f5f5f5;
-    }
-
-    .logo-card img {
-      max-width: 80%;
-      max-height: 80%;
-      object-fit: contain;
-      filter: grayscale(100%);
-      transition: all 0.4s ease;
-      position: relative;
-      z-index: 1;
-    }
-
-    .logo-card:hover img {
-      filter: grayscale(0%);
-    }
-
-    .logo-label {
-      position: absolute;
-      bottom: 1rem;
-      left: 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: #52525b;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.4s ease;
-      z-index: 1;
-    }
-
-    .logo-card:hover .logo-label {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Stats Section */
-    .stats {
-      background: var(--bg-tertiary);
-      padding: 6rem 3rem;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 3rem;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 4rem;
-      color: var(--cyan);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-    }
-
-    /* Process Section */
-    .process {
-      background: var(--bg-secondary);
-    }
-
-    .process-timeline {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      position: relative;
-    }
-
-    .process-timeline::before {
-      content: '';
-      position: absolute;
-      top: 2rem;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
-    }
-
-    .process-step {
-      padding: 0 1.5rem;
-      position: relative;
-    }
-
-    .process-step::before {
-      content: '';
-      position: absolute;
-      top: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 12px;
-      height: 12px;
-      background: var(--bg-secondary);
-      border: 2px solid var(--border);
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      z-index: 1;
-    }
-
-    .process-step:hover::before {
-      border-color: var(--cyan);
-      box-shadow: 0 0 20px var(--cyan-glow);
-    }
-
-    .process-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      padding-top: 4rem;
-    }
-
-    .process-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .process-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Contact Section */
-    .contact {
-      background: var(--bg-primary);
-      text-align: center;
-    }
-
-    .contact-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 500px;
-      margin: 0 auto 3rem;
-      line-height: 1.7;
-    }
-
-    .contact-email {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
-      color: var(--cyan);
-      text-decoration: none;
-      padding: 1rem 2rem;
-      border: 1px solid var(--cyan);
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    .contact-email:hover {
-      background: var(--cyan);
-      color: var(--bg-primary);
-      box-shadow: 0 0 40px var(--cyan-glow);
-    }
-
-    /* Footer */
-    footer {
-      padding: 2rem 3rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-copy {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .footer-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--cyan);
-    }
-
-    /* Modal Styles */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(240, 240, 240, 0.95);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-content {
-      position: relative;
-      max-width: 90vw;
-      max-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .modal-content {
-      transform: scale(1);
-    }
-
-    .modal-content img {
-      max-width: 100%;
-      max-height: 75vh;
-      object-fit: contain;
-      border-radius: 4px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    }
-
-    .modal-label {
-      margin-top: 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: #52525b;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      width: 48px;
-      height: 48px;
-      background: transparent;
-      border: 1px solid #d4d4d8;
-      color: #3f3f46;
-      font-size: 1.75rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      z-index: 2001;
-    }
-
-    .modal-close:hover {
-      border-color: #18181b;
-      color: #18181b;
-      background: #e4e4e7;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-      }
-
-      .process-timeline {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-      }
-
-      .process-timeline::before {
-        display: none;
-      }
-
-      .process-step::before {
-        left: 0;
-        transform: none;
-      }
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding: 0 1.5rem;
-      }
-
-      section {
-        padding: 5rem 1.5rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-        text-align: left;
-      }
-
-      .stat-item {
-        text-align: left;
-        padding: 1.5rem 0;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .process-timeline {
-        grid-template-columns: 1fr;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deft Webmaster | Websites for Local Businesses</title>
+    <meta name="description" content="Professional websites for local businesses in the DFW area. No agency prices, no tech stress. Just results.">
+    
+    <!-- Open Graph / Social Cards -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.deftwebmaster.com/">
+    <meta property="og:title" content="Deft Webmaster | Websites for Local Businesses">
+    <meta property="og:description" content="Professional websites for local businesses in the DFW area. No agency prices, no tech stress. Just results.">
+    <meta property="og:image" content="https://www.deftwebmaster.com/share-card.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.deftwebmaster.com/">
+    <meta name="twitter:title" content="Deft Webmaster | Websites for Local Businesses">
+    <meta name="twitter:description" content="Professional websites for local businesses in the DFW area. No agency prices, no tech stress. Just results.">
+    <meta name="twitter:image" content="https://www.deftwebmaster.com/share-card.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #1d4ed8;
+            --blue-light: #3b82f6;
+            --blue-subtle: #eff6ff;
+            --blue-glow: rgba(29, 78, 216, 0.1);
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #9ca3af;
+            --bg-white: #ffffff;
+            --bg-warm: #fafaf9;
+            --bg-cool: #f8fafc;
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--blue);
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--blue);
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: white !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            transition: background 0.2s ease, transform 0.2s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--blue-light) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 6rem;
+            background: linear-gradient(180deg, var(--bg-cool) 0%, var(--bg-white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.75rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .contact-value a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-value a:hover {
+            color: var(--blue);
+        }
+
+        .contact-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--blue);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+        }
+
+        .hero-cta:hover {
+            background: var(--blue-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 78, 216, 0.3);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.2s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* Section styling */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        /* Services */
+        .services {
+            background: var(--bg-warm);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--blue);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--blue-light);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--blue-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--blue);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--blue);
+            color: white;
+        }
+
+        .service-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .service-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Work / Logos */
+        .work {
+            background: var(--bg-white);
+        }
+
+        .logos-intro {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .logo-item {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .logo-item:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .logo-item img {
+            max-width: 140px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        /* About */
+        .about {
+            background: var(--bg-cool);
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .contact .section-tag {
+            color: var(--blue-light);
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--blue-light);
+            transform: translateY(-2px);
+        }
+
+        .contact-card-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--blue);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.75rem;
+        }
+
+        .contact-card-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card-value {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .contact-card-value a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-card-value a:hover {
+            color: var(--blue-light);
+        }
+
+        .contact-card-note {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile nav */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 1rem 1.5rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-contact {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .logo-item {
+                padding: 1rem;
+            }
+
+            .logo-item img {
+                max-width: 100px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content > * {
+            animation: fadeUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+    </style>
 </head>
 <body>
-  <div class="gradient-mesh"></div>
-  <div class="grid-lines"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">Deft<span>Webmaster</span></a>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="nav-cta">Get in Touch</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
 
-  <nav>
-    <a href="#" class="logo">
-      <span class="logo-mark">ML</span>
-      Matt Livingston
-    </a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Start Project</a>
-  </nav>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>Your business deserves a website. <span>I'll build it.</span></h1>
+                <p class="hero-subtitle">Professional websites for local businesses in the DFW area. No agency prices. No tech headaches. Just a site that works.</p>
+                <div class="hero-contact">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">Text or Call</span>
+                            <span class="contact-value"><a href="tel:7205073338">720-507-3338</a></span>
+                            <span class="contact-note">texting works best</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value"><a href="mailto:matt@deftwebmaster.com">matt@deftwebmaster.com</a></span>
+                        </div>
+                    </div>
+                </div>
+                <a href="#contact" class="hero-cta">
+                    Let's Talk
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
 
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-tag">Web Developer & Designer</div>
-      <h1 class="hero-title">
-        I Build<br>
-        <span class="highlight">Digital</span><br>
-        Experiences
-      </h1>
-      <p class="hero-description">
-        Clean code. Memorable design. Websites that work as hard as you do. 
-        From storefronts to portfolios, I craft web solutions that convert 
-        visitors into customers.
-      </p>
-      <div class="hero-cta-group">
-        <a href="#contact" class="btn-primary">Let's Talk</a>
-        <a href="#work" class="btn-secondary">View Work</a>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      Scroll to explore
-    </div>
-  </section>
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Services</span>
+                <h2 class="section-title">What I Build</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Small Business Websites</h3>
+                    <p class="service-description">Clean, professional sites that tell your story and bring in customers. Mobile-friendly, fast-loading, and easy to update.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Restaurant & Menu Sites</h3>
+                    <p class="service-description">Show off your menu, take reservations, and connect with hungry customers. Designed to make mouths water.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Online Storefronts</h3>
+                    <p class="service-description">Sell your products online with a store that's simple to manage. Accept payments, track orders, grow your reach.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Logo & Branding</h3>
+                    <p class="service-description">Need a logo that sticks? I design memorable marks and visual identities that make your business look established.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="services" id="services">
-    <div class="section-header">
-      <div class="section-tag">What I Do</div>
-      <h2 class="section-title">Services</h2>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">01</div>
-        <h3 class="service-title">Website Development</h3>
-        <p class="service-description">
-          Custom-built, responsive websites that load fast and look sharp on every device. 
-          Hand-coded for performance and maintainability.
-        </p>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">02</div>
-        <h3 class="service-title">E-Commerce & Storefronts</h3>
-        <p class="service-description">
-          Online stores that sell. Clean product displays, smooth checkout flows, 
-          and inventory systems that just work.
-        </p>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">03</div>
-        <h3 class="service-title">Restaurant Websites</h3>
-        <p class="service-description">
-          Menus that make mouths water. Online ordering, reservations, and locations 
-          that get customers through your door.
-        </p>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">04</div>
-        <h3 class="service-title">Small Business Web Design</h3>
-        <p class="service-description">
-          Professional web presence for local businesses. Service pages, contact forms, 
-          and designs that build trust at first glance.
-        </p>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">05</div>
-        <h3 class="service-title">Blog & Content Sites</h3>
-        <p class="service-description">
-          Content-first platforms that are easy to update. SEO-ready architecture 
-          with beautiful typography that keeps readers engaged.
-        </p>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">06</div>
-        <h3 class="service-title">Logo Design</h3>
-        <p class="service-description">
-          Brand marks that stick. From concept to final files, logos that work 
-          across business cards, websites, and everything in between.
-        </p>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">07</div>
-        <h3 class="service-title">Static Web Apps</h3>
-        <p class="service-description">
-          Interactive tools and calculators. Single-page applications that run 
-          lightning-fast without server dependencies.
-        </p>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">08</div>
-        <h3 class="service-title">Landing Pages & Funnels</h3>
-        <p class="service-description">
-          Conversion-focused pages for launches and campaigns. A/B ready designs 
-          that turn traffic into leads and leads into customers.
-        </p>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">◈</span>
-        <div class="service-number">09</div>
-        <h3 class="service-title">Website Maintenance</h3>
-        <p class="service-description">
-          Ongoing support to keep things running. Updates, backups, security patches, 
-          and content changes without the hassle.
-        </p>
-      </div>
-    </div>
-  </section>
+    <!-- Work -->
+    <section class="work" id="work">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Work</span>
+                <h2 class="section-title">Logo Design Examples</h2>
+            </div>
+            <p class="logos-intro">A selection of logos designed for local businesses</p>
+            <div class="logos-grid">
+                <div class="logo-item">
+                    <img src="nimbus-kitchen.png" alt="Nimbus Kitchen logo">
+                </div>
+                <div class="logo-item">
+                    <img src="ridgeline-roasters.png" alt="Ridgeline Roasters logo">
+                </div>
+                <div class="logo-item">
+                    <img src="canopy-legal.png" alt="Canopy Legal logo">
+                </div>
+                <div class="logo-item">
+                    <img src="ironbark.png" alt="Ironbark logo">
+                </div>
+                <div class="logo-item">
+                    <img src="splitstream.png" alt="Splitstream logo">
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="work" id="work">
-    <div class="section-header">
-      <div class="section-tag">Selected Clients</div>
-      <h2 class="section-title">Recent Work</h2>
-    </div>
-    <p class="work-intro">
-      A sampling of brands I've designed for. Each project started with a conversation 
-      and ended with something that works.
-    </p>
-    <div class="logo-showcase">
-      <div class="logo-card">
-        <img src="canopy-logo.png" alt="Canopy Legal">
-        <span class="logo-label">Legal Services</span>
-      </div>
-      <div class="logo-card">
-        <img src="courtney-logo.png" alt="Courtney's Hair Salon">
-        <span class="logo-label">Beauty & Salon</span>
-      </div>
-      <div class="logo-card">
-        <img src="ironbark-logo.png" alt="Ironbark Outdoor Equipment">
-        <span class="logo-label">Outdoor Retail</span>
-      </div>
-      <div class="logo-card">
-        <img src="nimbus-logo.png" alt="Nimbus Kitchen">
-        <span class="logo-label">Restaurant</span>
-      </div>
-      <div class="logo-card">
-        <img src="parallax-logo.png" alt="Parallax Audio">
-        <span class="logo-label">Audio Production</span>
-      </div>
-      <div class="logo-card">
-        <img src="ridgeline-logo.png" alt="Ridgeline Roasters">
-        <span class="logo-label">Coffee & Beverage</span>
-      </div>
-      <div class="logo-card">
-        <img src="vectral-logo.png" alt="Vectral">
-        <span class="logo-label">Business Services</span>
-      </div>
-      <div class="logo-card">
-        <img src="splitstream-logo.png" alt="Splitstream">
-        <span class="logo-label">Fintech</span>
-      </div>
-    </div>
-  </section>
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">About</span>
+                <h2 class="section-title">Who's Behind This</h2>
+            </div>
+            <div class="about-content">
+                <p class="about-text">
+                    <strong>I'm Matt, a DFW-based web developer.</strong> I build fast, reliable websites for local businesses who want a professional online presence—without agency prices or ongoing tech stress. You tell me what you need. I handle the rest.
+                </p>
+            </div>
+        </div>
+    </section>
 
-  <section class="stats">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number">18+</div>
-        <div class="stat-label">Projects Shipped</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Client Satisfaction</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">&lt;2s</div>
-        <div class="stat-label">Avg Load Time</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">DFW</div>
-        <div class="stat-label">Based In Texas</div>
-      </div>
-    </div>
-  </section>
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Contact</span>
+                <h2 class="section-title">Let's Get Started</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="contact-card-title">Text or Call</div>
+                    <div class="contact-card-value">
+                        <a href="tel:7205073338">720-507-3338</a>
+                    </div>
+                    <div class="contact-card-note">texting works best</div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <div class="contact-card-title">Email</div>
+                    <div class="contact-card-value">
+                        <a href="mailto:matt@deftwebmaster.com">matt@deftwebmaster.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="process" id="process">
-    <div class="section-header">
-      <div class="section-tag">How It Works</div>
-      <h2 class="section-title">Process</h2>
-    </div>
-    <div class="process-timeline">
-      <div class="process-step">
-        <div class="process-number">01</div>
-        <h3 class="process-title">Discovery</h3>
-        <p class="process-desc">We talk about your business, goals, and what success looks like. No jargon, just questions.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number">02</div>
-        <h3 class="process-title">Design</h3>
-        <p class="process-desc">Wireframes and mockups that show the structure before a single line of code is written.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number">03</div>
-        <h3 class="process-title">Develop</h3>
-        <p class="process-desc">Clean, commented code built to last. Regular check-ins keep everything on track.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number">04</div>
-        <h3 class="process-title">Deploy</h3>
-        <p class="process-desc">Launch day. Testing, optimization, and handoff with documentation you can actually use.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="section-tag" style="justify-content: center;">Get In Touch</div>
-    <h2 class="contact-title">Let's Build Something</h2>
-    <p class="contact-subtitle">
-      Have a project in mind? I'd love to hear about it. 
-      Drop me a line and let's see if we're a good fit.
-    </p>
-    <a href="mailto:matt@deftwebmaster.com" class="contact-email">matt@deftwebmaster.com</a>
-  </section>
-
-  <footer>
-    <div class="footer-copy">© 2026 Matt Livingston. All rights reserved.</div>
-    <div class="footer-links">
-      <!-- <a href="https://github.com/">GitHub</a> -->
-    </div>
-  </footer>
-
-  <!-- Logo Modal -->
-  <div class="modal-overlay" id="logoModal">
-    <button class="modal-close" aria-label="Close modal">&times;</button>
-    <div class="modal-content">
-      <img src="" alt="" id="modalImage">
-      <div class="modal-label" id="modalLabel"></div>
-    </div>
-  </div>
-
-  <script>
-    const modal = document.getElementById('logoModal');
-    const modalImg = document.getElementById('modalImage');
-    const modalLabel = document.getElementById('modalLabel');
-    const closeBtn = document.querySelector('.modal-close');
-
-    document.querySelectorAll('.logo-card').forEach(card => {
-      card.style.cursor = 'pointer';
-      card.addEventListener('click', () => {
-        const img = card.querySelector('img');
-        const label = card.querySelector('.logo-label');
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-        modalLabel.textContent = label ? label.textContent : '';
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    function closeModal() {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-    });
-  </script>
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">&copy; 2025 Deft Webmaster. DFW, Texas.</p>
+    </footer>
 </body>
 </html>
+<!-- * lone wolf, open range | Matt Livingston -->

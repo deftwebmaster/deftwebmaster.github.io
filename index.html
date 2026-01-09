@@ -391,10 +391,12 @@
 
         .logos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             align-items: center;
             justify-items: center;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .logo-item {
@@ -591,7 +593,7 @@
 
             .logos-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+                gap: 1.5rem;
             }
 
             .logo-item {
@@ -771,9 +773,6 @@
                 </div>
                 <div class="logo-item">
                     <img src="ironbark.png" alt="Ironbark logo">
-                </div>
-                <div class="logo-item">
-                    <img src="splitstream.png" alt="Splitstream logo">
                 </div>
             </div>
         </div>
